@@ -1,59 +1,52 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, FlatList } from "react-native";
+import SubjectCard from "../components/SubjectCard";
 
 const Dashboard = ({ navigation }) => {
   const [subjects, setSubjects] = useState([
     {
       key: "1",
-      sbj: "Science",
+      sbj: "Math",
     },
     {
       key: "2",
-      sbj: "Math",
+      sbj: "Science",
     },
     {
       key: "3",
-      sbj: "Science",
+      sbj: "English",
     },
     {
       key: "4",
-      sbj: "Math",
+      sbj: "Social Studies",
     },
     {
       key: "5",
-      sbj: "Science",
+      sbj: "Reading",
     },
     {
       key: "6",
-      sbj: "Math",
+      sbj: "Literacy I",
     },
     {
       key: "7",
-      sbj: "Science",
+      sbj: "Literacy II",
     },
     {
       key: "8",
-      sbj: "Math",
+      sbj: "Fun",
     },
   ]);
 
-  const sbjCard = () => (
-    <View>
-      <View style={styles.subjectCard}>
-        <Image
-          source={require("../../assets/dna.png")}
-          style={styles.imageStyles}
-        />
-        <Text>Science</Text>
-      </View>
-    </View>
+  const sbjCard = ({item}) => (
+    <SubjectCard item={item} onPress={()=>{navigation.navigate("SubjectDetailsScreen")}}/>
   );
 
   return (
     <View
       style={{
         flex: 1,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
       }}
     >
       {/* Top header, greetingview */}
@@ -116,21 +109,19 @@ const Dashboard = ({ navigation }) => {
       </View>
 
       {/* Main content view */}
-      <View>
-        {/* <View style={styles.subjectCard}>
-          <Image
-            source={require("../../assets/dna.png")}
-            style={styles.imageStyles}
-          />
-          <Text>Science</Text>
-        </View> */}
-        <Text style={{ fontSize: 20, marginTop: 10, marginBottom: 5 }}>Let's Learn</Text>
+      <View style={{flex: 1}}>
+        <Text style={{ fontSize: 20, marginTop: 10, marginBottom: 5 }}>
+          Let's Learn
+        </Text>
         <FlatList
           data={subjects}
           numColumns={2}
           keyExtractor={(item) => item.key}
           renderItem={sbjCard}
           showsVerticalScrollIndicator={false}
+          columnWrapperStyle={
+            {justifyContent: 'space-between'}
+          }
         />
       </View>
     </View>
@@ -151,10 +142,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 5,
+    marginVertical: 10,
     height: 200,
-    width: 150,
-    marginHorizontal: 5,
     elevation: 4,
   },
 });

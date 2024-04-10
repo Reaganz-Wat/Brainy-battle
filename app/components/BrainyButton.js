@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
-const BrainyButton = ({ text, faceColor, sidecolor, fontSize, textColor, ...props }) => {
+const BrainyButton = ({ text, faceColor, sidecolor, fontSize, textColor, someWidth, ...props }) => {
     const [pressedButton, setPressedButton] = useState(null);
 
     const handleButtonPressIn = (buttonName) => {
@@ -21,7 +21,7 @@ const BrainyButton = ({ text, faceColor, sidecolor, fontSize, textColor, ...prop
           style={[
             styles.buttonStyle,
             isPressed("info") && styles.buttonPressed,
-            { backgroundColor: faceColor, borderColor: sidecolor },
+            { backgroundColor: faceColor, borderColor: sidecolor }, {width: someWidth}
           ]}
           onPressIn={() => handleButtonPressIn("info")}
           onPressOut={handleButtonPressOut}

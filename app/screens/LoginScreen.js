@@ -71,6 +71,7 @@ const LoginScreen = ({ navigation }) => {
               textColor="#fff"
               onLongPress={() => alert("Onlong press")}
               onPress={() => navigation.navigate("DashboardScreen")}
+              someWidth={250}
             />
           </View>
         </View>

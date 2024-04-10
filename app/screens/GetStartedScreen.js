@@ -24,6 +24,7 @@ const GetStartedScreen = ({ navigation }) => {
           textColor="#fff"
           onLongPress={() => alert("Onlong press")}
           onPress={() => navigation.navigate("LoginScreen")}
+          someWidth={200}
         />
       </View>
     </SafeAreaView>
