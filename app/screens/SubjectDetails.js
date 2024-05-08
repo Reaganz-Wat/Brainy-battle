@@ -10,16 +10,14 @@ import {
 import SubjectCard from "../components/SubjectCard";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
+import API from "../components/API";
 
 const SubjectDetails = ({ navigation }) => {
-
   // Get the id of the subjects
   const route = useRoute();
   const id = route.params.id;
 
-  // now make a request to the backend and fetch the levels for the subjects
-
-
+  const [levels, setLevels] = useState([]);
   const [subjects, setSubjects] = useState([
     {
       key: "1",
@@ -55,15 +53,39 @@ const SubjectDetails = ({ navigation }) => {
     },
   ]);
 
+  // now make a request to the backend and fetch the levels for the subjects
+  const getLevels = async () => {
+    try {
+      const level_response = await axios.get(API.get_levels, {
+        params: { subject_id: id },
+      });
+      const response_data = await level_response.data;
+      setLevels(response_data);
+      // console.log("Response Level: ", levels);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {getLevels()}, []);
+
+
   const sbjCard = ({ item }) => (
     <View style={{ flex: 1 }}>
-      <Pressable style={{ flex: 1 }} onPress={()=>{navigation.navigate("S")}}>
+      <Pressable
+        style={{ flex: 1 }}
+        onPress={() => {
+          // get the subject_id and the level_id, take it to the next page
+          // console.log("Subject_id", item.subject_id);
+          // console.log("Level_id", item.level_id);
+          navigation.navigate("S", {level_id: item.level_id, subject_id: item.subject_id});
+        }}
+      >
         <View style={styles.subjectCard}>
           <Image
             source={require("../../assets/dna.png")}
             style={styles.imageStyles}
           />
-          <Text>{item.sbj}</Text>
+          <Text>Level {item.level_id}</Text>
         </View>
       </Pressable>
     </View>
@@ -72,9 +94,9 @@ const SubjectDetails = ({ navigation }) => {
   return (
     <View style={{ flex: 1, marginHorizontal: 5 }}>
       <FlatList
-        data={subjects}
+        data={levels}
         numColumns={2}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item) => item.level_id}
         renderItem={sbjCard}
         showsVerticalScrollIndicator={false}
         columnWrapperStyle={{ justifyContent: "space-between" }}
