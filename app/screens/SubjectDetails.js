@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -8,8 +8,18 @@ import {
   Image,
 } from "react-native";
 import SubjectCard from "../components/SubjectCard";
+import { useRoute } from "@react-navigation/native";
+import axios from "axios";
 
 const SubjectDetails = ({ navigation }) => {
+
+  // Get the id of the subjects
+  const route = useRoute();
+  const id = route.params.id;
+
+  // now make a request to the backend and fetch the levels for the subjects
+
+
   const [subjects, setSubjects] = useState([
     {
       key: "1",
@@ -47,7 +57,7 @@ const SubjectDetails = ({ navigation }) => {
 
   const sbjCard = ({ item }) => (
     <View style={{ flex: 1 }}>
-      <Pressable style={{ flex: 1 }} onPress={()=>{navigation.navigate("QuizScreen")}}>
+      <Pressable style={{ flex: 1 }} onPress={()=>{navigation.navigate("S")}}>
         <View style={styles.subjectCard}>
           <Image
             source={require("../../assets/dna.png")}

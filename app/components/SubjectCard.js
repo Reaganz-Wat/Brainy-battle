@@ -6,7 +6,7 @@ const SubjectCard = ({item, ...props}) => {
     <Pressable style={{ flex: 1 }} {...props}>
       <View style={styles.subjectCard}>
         <Image
-          source={require("../../assets/dna.png")}
+          source={item.pic}
           style={styles.imageStyles}
         />
         <Text>{item.sbj}</Text>

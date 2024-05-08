@@ -3,43 +3,37 @@ import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import SubjectCard from "../components/SubjectCard";
 
 const Dashboard = ({ navigation }) => {
+
   const [subjects, setSubjects] = useState([
     {
       key: "1",
       sbj: "Math",
+      pic: require("../../assets/math.png"),
     },
     {
       key: "2",
       sbj: "Science",
+      pic: require("../../assets/dna.png"),
     },
     {
       key: "3",
       sbj: "English",
+      pic: require("../../assets/eng.png"),
     },
     {
       key: "4",
       sbj: "Social Studies",
-    },
-    {
-      key: "5",
-      sbj: "Reading",
-    },
-    {
-      key: "6",
-      sbj: "Literacy I",
-    },
-    {
-      key: "7",
-      sbj: "Literacy II",
-    },
-    {
-      key: "8",
-      sbj: "Fun",
+      pic: require("../../assets/sst.png"),
     },
   ]);
 
-  const sbjCard = ({item}) => (
-    <SubjectCard item={item} onPress={()=>{navigation.navigate("SubjectDetailsScreen")}}/>
+  const sbjCard = ({ item }) => (
+    <SubjectCard
+      item={item}
+      onPress={() => {
+        navigation.navigate("SubjectDetailsScreen", {id: item.key});
+      }}
+    />
   );
 
   return (
@@ -109,7 +103,7 @@ const Dashboard = ({ navigation }) => {
       </View>
 
       {/* Main content view */}
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 20, marginTop: 10, marginBottom: 5 }}>
           Let's Learn
         </Text>
@@ -119,9 +113,7 @@ const Dashboard = ({ navigation }) => {
           keyExtractor={(item) => item.key}
           renderItem={sbjCard}
           showsVerticalScrollIndicator={false}
-          columnWrapperStyle={
-            {justifyContent: 'space-between'}
-          }
+          columnWrapperStyle={{ justifyContent: "space-between" }}
         />
       </View>
     </View>
