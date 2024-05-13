@@ -10,6 +10,12 @@ import Quiz from "./app/screens/Quiz";
 import VideoScreen from "./app/screens/VideoScreen";
 import S from "./app/S";
 import Lot from "./app/Lot";
+import TutorialScreen from "./app/screens/TutorialScreen";
+import QuestionScreen from "./app/screens/QuestionScreen";
+import ClassSelectionScreen from "./app/screens/ClassSelectionScreen";
+import TopicsScreen from "./app/screens/TopicsScreen";
+import SubTopicsScreen from "./app/screens/SubTopicsScreen";
+import MathScreen from "./app/screens/MathScreen";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +32,12 @@ export default function App() {
         <Stack.Screen name="VideoScreen" component={VideoScreen} options={{headerShown: true}}/>
         <Stack.Screen name="Quiz" component={Lot}/>
         <Stack.Screen name="S" component={S} />
+        <Stack.Screen name="TutorialScreen" component={TutorialScreen} />
+        <Stack.Screen name="QuestionScreen" component={QuestionScreen} />
+        <Stack.Screen name="ClassSelectScreen" component={ClassSelectionScreen} />
+        <Stack.Screen name="TopicsScreen" component={TopicsScreen} />
+        <Stack.Screen name="SubTopicsScreen" component={SubTopicsScreen} />
+        <Stack.Screen name="MathScreen" component={MathScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

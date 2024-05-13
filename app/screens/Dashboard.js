@@ -31,7 +31,7 @@ const Dashboard = ({ navigation }) => {
     <SubjectCard
       item={item}
       onPress={() => {
-        navigation.navigate("SubjectDetailsScreen", {id: item.key});
+        navigation.navigate("TopicsScreen", {id: item.key});
       }}
     />
   );

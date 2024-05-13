@@ -70,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
               fontSize={20}
               textColor="#fff"
               onLongPress={() => alert("Onlong press")}
-              onPress={() => navigation.navigate("DashboardScreen")}
+              onPress={() => navigation.navigate("ClassSelectScreen")}
               someWidth={250}
             />
           </View>

@@ -77,7 +77,7 @@ const SubjectDetails = ({ navigation }) => {
           // get the subject_id and the level_id, take it to the next page
           // console.log("Subject_id", item.subject_id);
           // console.log("Level_id", item.level_id);
-          navigation.navigate("S", {level_id: item.level_id, subject_id: item.subject_id});
+          navigation.navigate("TutorialScreen", {level_id: item.level_id, subject_id: item.subject_id});
         }}
       >
         <View style={styles.subjectCard}>
