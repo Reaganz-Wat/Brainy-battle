@@ -9,17 +9,21 @@ const ClassSelectionScreen = ({ navigation }) => {
     { id: 3, class: 'P.3' }
   ];
 
-  const selectClass = async (selectedClass) => {
-    try {
-      // Store the selected class ID in AsyncStorage
-      await AsyncStorage.setItem('classId', selectedClass.id.toString());
-      console.log('Class ID stored successfully:', selectedClass.id);
-      // Navigate to the next screen
-      navigation.navigate('DashboardScreen');
-    } catch (error) {
-      console.error('Error storing class ID:', error);
-    }
-  };
+  // const selectClass = async (selectedClass) => {
+  //   try {
+  //     // Store the selected class ID in AsyncStorage
+  //     await AsyncStorage.setItem('classId', selectedClass.id.toString());
+  //     console.log('Class ID stored successfully:', selectedClass.id);
+  //     // Navigate to the next screen
+  //     navigation.navigate('DashboardScreen');
+  //   } catch (error) {
+  //     console.error('Error storing class ID:', error);
+  //   }
+  // };
+
+  const go_to_dashboard = (selectClass) => {
+    navigation.navigate("DashboardScreen", { class_id: selectClass.id });
+  }
 
   return (
     <View style={styles.container}>
@@ -29,7 +33,7 @@ const ClassSelectionScreen = ({ navigation }) => {
         <TouchableOpacity
           key={classItem.id}
           style={styles.classItem}
-          onPress={() => selectClass(classItem)}
+          onPress={() => go_to_dashboard(classItem)}
         >
           <Text style={styles.classText}>{classItem.class}</Text>
         </TouchableOpacity>

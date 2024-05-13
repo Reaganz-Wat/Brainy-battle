@@ -16,6 +16,7 @@ import ClassSelectionScreen from "./app/screens/ClassSelectionScreen";
 import TopicsScreen from "./app/screens/TopicsScreen";
 import SubTopicsScreen from "./app/screens/SubTopicsScreen";
 import MathScreen from "./app/screens/MathScreen";
+import TutorialList from "./app/screens/TutorialList";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
         <Stack.Screen name="TopicsScreen" component={TopicsScreen} />
         <Stack.Screen name="SubTopicsScreen" component={SubTopicsScreen} />
         <Stack.Screen name="MathScreen" component={MathScreen} />
+        <Stack.Screen name="TutorialListScreen" component={TutorialList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

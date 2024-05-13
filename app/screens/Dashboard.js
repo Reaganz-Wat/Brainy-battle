@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import SubjectCard from "../components/SubjectCard";
+import { useRoute } from "@react-navigation/native";
 
 const Dashboard = ({ navigation }) => {
 
@@ -26,12 +27,14 @@ const Dashboard = ({ navigation }) => {
       pic: require("../../assets/sst.png"),
     },
   ]);
+  const route = useRoute();
+  const class_id = route.params.class_id;
 
   const sbjCard = ({ item }) => (
     <SubjectCard
       item={item}
       onPress={() => {
-        navigation.navigate("TopicsScreen", {id: item.key});
+        navigation.navigate("TopicsScreen", {subject_id: item.key, class_id: class_id});
       }}
     />
   );

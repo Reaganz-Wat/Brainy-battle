@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, TouchableOpacity, Text, Alert, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Alert,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import { Video } from "expo-av";
-import Slider from '@react-native-community/slider'; // Import Slider from @react-native-community/slider
+import Slider from "@react-native-community/slider"; // Import Slider from @react-native-community/slider
 import axios from "axios";
 import API from "../components/API";
 import { useRoute } from "@react-navigation/native";
@@ -14,8 +21,9 @@ const TutorialScreen = ({ navigation }) => {
   const [videoDuration, setVideoDuration] = useState(0);
 
   const route = useRoute();
-  const level_id = route.params.level_id;
+  const topic_id = route.params.topic_id;
   const subject_id = route.params.subject_id;
+  const class_id = route.params.class_id;
 
   useEffect(() => {
     getVideos();
@@ -24,7 +32,11 @@ const TutorialScreen = ({ navigation }) => {
   const getVideos = async () => {
     try {
       const response = await axios.get(API.get_videos, {
-        params: { subject_id: subject_id, level_id: level_id },
+        params: {
+          subject_id: subject_id,
+          class_id: class_id,
+          topic_id: topic_id,
+        },
       });
       const data = await response.data;
       setTutorialUrl(API.video_concat + data);
@@ -50,7 +62,16 @@ const TutorialScreen = ({ navigation }) => {
       Alert.alert(
         "Video Finished",
         "The video has finished playing.",
-        [{ text: "OK", onPress: () => navigation.navigate("S", {level_id: level_id, subject_id: subject_id}) }],
+        [
+          {
+            text: "OK",
+            onPress: () =>
+              navigation.navigate("S", {
+                level_id: level_id,
+                subject_id: subject_id,
+              }),
+          },
+        ],
         { cancelable: false }
       );
     } else {
@@ -87,8 +108,13 @@ const TutorialScreen = ({ navigation }) => {
         maximumTrackTintColor="#000"
         step={0.01} // Set a step value to ensure smooth movement
       />
-      <TouchableOpacity onPress={handlePlayPause} style={styles.playPauseButton}>
-        <Text style={styles.buttonText}>{isVideoPlaying ? "Pause" : "Play"}</Text>
+      <TouchableOpacity
+        onPress={handlePlayPause}
+        style={styles.playPauseButton}
+      >
+        <Text style={styles.buttonText}>
+          {isVideoPlaying ? "Pause" : "Play"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
