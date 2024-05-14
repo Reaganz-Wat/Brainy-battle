@@ -39,7 +39,7 @@ export default function App() {
         <Stack.Screen name="TopicsScreen" component={TopicsScreen} />
         <Stack.Screen name="SubTopicsScreen" component={SubTopicsScreen} />
         <Stack.Screen name="MathScreen" component={MathScreen} />
-        <Stack.Screen name="TutorialListScreen" component={TutorialList} />
+        {/* <Stack.Screen name="TutorialListScreen" component={TutorialList} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
