@@ -1,4 +1,4 @@
-const IP_ADDRESS = "10.20.1.95";
+const IP_ADDRESS = "192.168.244.83";
 
 export default API = {
   get_subjects: `http://${IP_ADDRESS}/WEB APPLICATIONS/brainybattle/CONTROLLERS/get_subjects.php`,
