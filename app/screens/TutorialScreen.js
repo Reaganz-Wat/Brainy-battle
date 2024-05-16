@@ -21,9 +21,9 @@ const TutorialScreen = ({ navigation }) => {
   const [videoDuration, setVideoDuration] = useState(0);
 
   const route = useRoute();
-  const topic_id = route.params.topic_id;
-  const subject_id = route.params.subject_id;
-  const class_id = route.params.class_id;
+  // const topic_id = route.params.topic_id;
+  // const subject_id = route.params.subject_id;
+  // const class_id = route.params.class_id;
 
   useEffect(() => {
     getVideos();
@@ -33,9 +33,9 @@ const TutorialScreen = ({ navigation }) => {
     try {
       const response = await axios.get(API.get_videos, {
         params: {
-          subject_id: subject_id,
-          class_id: class_id,
-          topic_id: topic_id,
+          // subject_id: subject_id,
+          // class_id: class_id,
+          // topic_id: topic_id,
         },
       });
       const data = await response.data;

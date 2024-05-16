@@ -1,67 +1,66 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, FlatList } from "react-native";
-import SubjectCard from "../components/SubjectCard";
-import { useRoute } from "@react-navigation/native";
+import { View, Text, Image, StyleSheet, FlatList, StatusBar, TextInput } from "react-native";
+import COLORS from '../components/Colors';
+import ClassCard from "../components/ClassCard";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import SideBarCard from "./SideBarCard";
+import Slider from "../components/Slider";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Dashboard = ({ navigation }) => {
 
-  const [subjects, setSubjects] = useState([
+  const [classes, setSubjects] = useState([
     {
       key: "1",
-      sbj: "Math",
-      pic: require("../../assets/math.png"),
+      class: "Primary One",
+      pic: require("../../assets/p1.png"),
     },
     {
       key: "2",
-      sbj: "Science",
-      pic: require("../../assets/dna.png"),
+      class: "Primary Two",
+      pic: require("../../assets/p2.png"),
     },
     {
       key: "3",
-      sbj: "English",
-      pic: require("../../assets/eng.png"),
-    },
-    {
-      key: "4",
-      sbj: "Social Studies",
-      pic: require("../../assets/sst.png"),
+      class: "Primay Three",
+      pic: require("../../assets/p33.jpg"),
     },
   ]);
-  const route = useRoute();
-  const class_id = route.params.class_id;
 
-  const sbjCard = ({ item }) => (
-    <SubjectCard
+  const clascard = ({ item }) => (
+    <ClassCard
       item={item}
       onPress={() => {
-        navigation.navigate("TopicsScreen", {subject_id: item.key, class_id: class_id});
+        // Navigate to different screens based on the clicked class
+        switch (item.class) {
+          case "Primary One":
+            navigation.navigate("PrimaryOneDashboard", { id: item.key });
+            break;
+          case "Primary Two":
+            navigation.navigate("PrimaryTwoDashboard", { id: item.key });
+            break;
+          case "Primay Three":
+            navigation.navigate("PrimaryThreeDashboard", { id: item.key });
+            break;
+          default:
+            break;
+        }
       }}
     />
   );
 
   return (
-    <View
-      style={{
-        flex: 1,
-        marginHorizontal: 10,
-      }}
-    >
-      {/* Top header, greetingview */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 20,
-        }}
-      >
-        <View style={{ flexDirection: "row", gap: 5 }}>
+    <View style={styles.container}>
+      <StatusBar barStyle={'dark-content'}/>
+      {/* Top header, greeting view */}
+      <View style={styles.header}>
+        <View style={styles.greetingContent}>
           <Image
             source={require("../../assets/greetings.png")}
             style={styles.greetings}
           />
           <View>
-            <Text>Hi Reagan,</Text>
+            <Text style={styles.greetingText}>Hi Reagan,</Text>
             <Text>Great to see you again!</Text>
           </View>
         </View>
@@ -70,76 +69,131 @@ const Dashboard = ({ navigation }) => {
           style={styles.greetings}
         />
       </View>
-
-      {/* Middle leaderboard view */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 30,
-          backgroundColor: "#fff",
-          padding: 10,
-          borderRadius: 10,
-          elevation: 3,
-        }}
-      >
-        <View style={{ flexDirection: "row", gap: 5 }}>
-          <Image
-            source={require("../../assets/trophy.png")}
-            style={styles.greetings}
-          />
-          <View>
-            <Text style={{ fontSize: 20 }}>Ranking</Text>
-            <Text style={{ alignSelf: "center", fontSize: 23 }}>09</Text>
-          </View>
-        </View>
-        <View style={{ flexDirection: "row", gap: 5 }}>
-          <Image
-            source={require("../../assets/medal.png")}
-            style={styles.greetings}
-          />
-          <View>
-            <Text style={{ fontSize: 20 }}>Point</Text>
-            <Text style={{ alignSelf: "center", fontSize: 23 }}>426</Text>
-          </View>
-        </View>
-      </View>
-
-      {/* Main content view */}
-      <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 20, marginTop: 10, marginBottom: 5 }}>
-          Let's Learn
-        </Text>
-        <FlatList
-          data={subjects}
-          numColumns={2}
-          keyExtractor={(item) => item.key}
-          renderItem={sbjCard}
-          showsVerticalScrollIndicator={false}
-          columnWrapperStyle={{ justifyContent: "space-between" }}
+       <View style={styles.divider}></View>
+       <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.searchContainer}>
+        <SimpleLineIcons name="magnifier" size={24} color={COLORS.darkBlue} style={styles.searchIcon}/>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="What are you looking for?"
+          placeholderTextColor='gray'
+          underlineColorAndroid='transparent'
         />
       </View>
+      <View>
+        <Image 
+        source={require("../../assets/images/unnamed.png")}
+        style={{height: 180, width: "100%",
+        borderRadius: 8,
+        marginTop: 10
+        }}
+        
+        />
+        <Text style={{
+          position: 'absolute',
+          fontWeight: '800',
+          margin: 20,
+          fontSize: 24,
+          color: 'white'
+        }}>
+          Welcome
+        </Text>
+      </View>
+      <View style={styles.sectionTitle}>
+        <Text style={styles.sectionTitleText}>Choose Your Class</Text>
+      </View>
+      <View style={styles.divider}></View>
+      <FlatList
+        data={classes}
+        numColumns={2}
+        keyExtractor={(item) => item.key}
+        renderItem={clascard}
+        showsVerticalScrollIndicator={false}
+        columnWrapperStyle={{ justifyContent: "space-between" }}
+      />
+      <View style={styles.sectionTitle}>
+        <Text style={styles.sectionTitleText}>Daily Scores</Text>
+      </View>
+      <View style={styles.divider}></View>
+      <Slider/>
+      <SideBarCard/>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  greetings: {
-    width: 50,
-    height: 50,
+  container: {
+    flex: 1,
+    marginHorizontal: 10,
   },
-  imageStyles: {
-    width: 100,
-    height: 100,
-  },
-  subjectCard: {
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    justifyContent: "center",
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 10,
-    height: 200,
-    elevation: 4,
+    backgroundColor: 'white',
+    padding: 10,
+    marginTop:10,
+    borderRadius: 5,
+  },
+  greetingContent: {
+    flexDirection: "row",
+    gap: 5,
+  },
+  greetings: {
+    width: 40,
+    height: 40,
+  },
+  greetingText: {
+    fontWeight: '800',
+  },
+  divider: {
+    height: 2,
+    marginTop: 5,
+    backgroundColor: COLORS.lightBLUE,
+  },
+  searchContainer: {
+    flexDirection: 'row-reverse',
+    backgroundColor: 'white',
+    height: 40,
+    marginTop: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  searchIcon: {
+    marginHorizontal: 8,
+  },
+  searchInput: {
+    flex: 1,
+    height: '100%',
+    marginLeft: 10,
+    color: COLORS.darkBlue,
+  },
+  sliderContainer: {
+    height: 190,
+    marginTop: 10,
+  },
+  img: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  },
+  text: {
+    position: 'absolute',
+    margin: 10,
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '800',
+  },
+  sectionTitle: {
+    marginTop: 8,
+  },
+  sectionTitleText: {
+    fontWeight: '600',
+  },
+  dailyScores: {
+    height: 250,
+    marginTop: 10,
   },
 });
 

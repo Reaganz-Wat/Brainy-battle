@@ -23,7 +23,7 @@ const Input = ({label, iconName, error, password, onChangeText, onFocus = () => 
                     onBlur={()=>{
                         setIsFocused(false);
                     }}
-                    style={{color: COLORS.darkBlue, flex: 1}}
+                    style={{color: COLORS.darkBlue, flex: 1, height: '100%'}}
                     onChangeText={onChangeText}
                     {...props}/>
                 {password && (
@@ -50,7 +50,8 @@ const style = StyleSheet.create({
         backgroundColor: COLORS.light,
         flexDirection: 'row',
         borderWidth: 0.5,
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 5,
     }
 });
 

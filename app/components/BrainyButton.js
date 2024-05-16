@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
       height: 60,
       borderRadius: 20,
       borderWidth: 0.2,
-      borderColor: "#eee",
+      borderColor: "#ff7cd5",
       borderBottomWidth: 8,
       shadowOffset: { width: 0, height: 3 },
       shadowOpacity: 0.5,

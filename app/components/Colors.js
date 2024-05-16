@@ -12,6 +12,14 @@ const COLORS = {
     manager_color: '#ff6c00',
     admin_color: '#693B69',
     delete_button: '#FA5C5C',
-    edit_button: '#0A8A07'
+    edit_button: '#0A8A07',
+
+    LIGHT_GREEN:'#9afdff',
+    PINK:'#ff38cd',
+    LIGHTPINK:'#ff7cd5',
+    LIGHTERPINK:'#ffb8d2',
+    MORELIGHTERPINK:'#ffdbdf',
+    
+
 };
 export default COLORS;

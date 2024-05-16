@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import Input from "../components/Input";
 import BrainyButton from "../components/BrainyButton";
-import COLORS from "../components/Colors";
 
 const LoginScreen = ({ navigation }) => {
   return (
@@ -32,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
             padding: 10,
             marginHorizontal: 15,
             backgroundColor: "#EFE9E1",
-            borderRadius: 20,
+            borderRadius: 10,
             marginBottom: 30,
           }}
         >
@@ -55,10 +54,10 @@ const LoginScreen = ({ navigation }) => {
               marginBottom: 10,
             }}
           >
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
               <Text style={{ color: "blue" }}>Forgot Details ?</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
               <Text style={{ color: "blue" }}>Create account ?</Text>
             </TouchableOpacity>
           </View>
@@ -70,7 +69,7 @@ const LoginScreen = ({ navigation }) => {
               fontSize={20}
               textColor="#fff"
               onLongPress={() => alert("Onlong press")}
-              onPress={() => navigation.navigate("ClassSelectScreen")}
+              onPress={() => navigation.navigate("DashboardScreen")}
               someWidth={250}
             />
           </View>
@@ -92,6 +91,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 17,
+    alignSelf: 'flex-start',
   },
 });
 

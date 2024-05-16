@@ -10,20 +10,32 @@ import Quiz from "./app/screens/Quiz";
 import VideoScreen from "./app/screens/VideoScreen";
 import S from "./app/S";
 import Lot from "./app/Lot";
-import TutorialScreen from "./app/screens/TutorialScreen";
-import QuestionScreen from "./app/screens/QuestionScreen";
-import ClassSelectionScreen from "./app/screens/ClassSelectionScreen";
-import TopicsScreen from "./app/screens/TopicsScreen";
-import SubTopicsScreen from "./app/screens/SubTopicsScreen";
-import MathScreen from "./app/screens/MathScreen";
-import TutorialList from "./app/screens/TutorialList";
+import ForgotPassword from "./app/screens/ForgotPassword";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import PrimaryOneDashboard from "./app/screens/PrimaryOne/PrinaryOneDashboard"
+import PrimaryTwoDashboard from "./app/screens/PrimaryTwo/PrimaryTwoDashboard"
+import PrimaryThreeDashboard from "./app/screens/PrimaryThree/PrimaryThreeDashboard"
+import SideBarCard from './app/screens/SideBarCard'
+
+
+import SSTScreen from "./app/screens/PrimaryOne/SSTScreen"
+import MathScreen from "./app/screens/PrimaryOne/MathScreen"
+import ScienceScreen from "./app/screens/PrimaryOne/ScienceScreen"
+import EnglishScreen from "./app/screens/PrimaryOne/EnglishScreen"
+
+import Slider from "./app/components/Slider";
+import DashboardScreen from "./app/Dashboard";
+
+import SetOneScreen from './app/screens/PrimaryOne/SetOneScreen'
+
+
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="OnboardingScreen">
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="GetStartedScreen">
         <Stack.Screen name="OnboardingScreen" component={OnboardingScreen}/>
         <Stack.Screen name="GetStartedScreen" component={GetStartedScreen}/>
         <Stack.Screen name="LoginScreen" component={LoginScreen}/>
@@ -33,23 +45,25 @@ export default function App() {
         <Stack.Screen name="VideoScreen" component={VideoScreen} options={{headerShown: true}}/>
         <Stack.Screen name="Quiz" component={Lot}/>
         <Stack.Screen name="S" component={S} />
-        <Stack.Screen name="TutorialScreen" component={TutorialScreen} />
-        <Stack.Screen name="QuestionScreen" component={QuestionScreen} />
-        <Stack.Screen name="ClassSelectScreen" component={ClassSelectionScreen} />
-        <Stack.Screen name="TopicsScreen" component={TopicsScreen} />
-        <Stack.Screen name="SubTopicsScreen" component={SubTopicsScreen} />
-        <Stack.Screen name="MathScreen" component={MathScreen} />
-        {/* <Stack.Screen name="TutorialListScreen" component={TutorialList} /> */}
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword}/>
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen}/>
+        <Stack.Screen name="PrimaryOneDashboard" component={PrimaryOneDashboard} options={{headerShown:true, title:"Primary One"}}/>
+        <Stack.Screen name="PrimaryTwoDashboard" component={PrimaryTwoDashboard} options={{headerShown:true, title:"Primary Two"}}/>
+        <Stack.Screen name="PrimaryThreeDashboard" component={PrimaryThreeDashboard} options={{headerShown:true, title:"Primary Three"}}/>
+        <Stack.Screen name="SideBarCard" component={SideBarCard}/>
+
+        <Stack.Screen name="SSTScreen" component={SSTScreen} options={{headerShown:true, title:"SST"}}/>
+        <Stack.Screen name="MathScreen" component={MathScreen} options={{headerShown:true, title:"Math"}}/>
+        <Stack.Screen name="ScienceScreen" component={ScienceScreen} options={{headerShown:true, title:"Science"}}/>
+        <Stack.Screen name="EnglishScreen" component={EnglishScreen} options={{headerShown:true, title:"English"}}/>
+        <Stack.Screen name="Slider" component={Slider}/>
+        <Stack.Screen name="Dashboard" component={DashboardScreen}/>
+
+        <Stack.Screen name="SetOneScreen" component={SetOneScreen} options={{headerShown:true, title:"Set One"}}/>
+
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
